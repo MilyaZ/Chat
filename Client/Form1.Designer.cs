@@ -131,6 +131,7 @@
             // 
             // Send
             // 
+            this.Send.Enabled = false;
             this.Send.Location = new System.Drawing.Point(360, 339);
             this.Send.Margin = new System.Windows.Forms.Padding(2);
             this.Send.Name = "Send";

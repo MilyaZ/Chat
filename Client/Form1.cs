@@ -198,6 +198,7 @@ namespace Client
         {
             Entry.Enabled = false;
             userNameTB.Enabled = false;
+            Send.Enabled = true;
         }
         String send = "";
         private void Send_Click(object sender, EventArgs e)
@@ -213,6 +214,7 @@ namespace Client
         {
             String userData = "";
             userData =ForTB.Text+"@"+MessageTB.Text;
+            MessageTB.Text = "";
             net.SendData("MESSAGE1", userData);
         }
             
@@ -231,6 +233,7 @@ namespace Client
             {
                 Entry.Enabled = true;
                 userNameTB.Enabled = true;
+                Send.Enabled = false;
                 ChatTB.AppendText("Выберите другое имя" + Environment.NewLine);
 
                 ThreadStart th = new ThreadStart(name);
