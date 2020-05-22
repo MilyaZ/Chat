@@ -7,7 +7,6 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using CommonNet;
 
@@ -20,7 +19,14 @@ namespace Client
         private int port = 8034;
         private NetMessaging net;
 
-        public delegate void Comment (String value);
+        Thread t1;
+
+        Thread t2;
+
+        Thread t3;
+        Thread t4;
+
+        public delegate void Comment(String value);
         public Form1()
         {
             InitializeComponent();
@@ -53,21 +59,28 @@ namespace Client
                 net.MessageCmdReceived += OnMessage;
                 net.EventComment += OnComment;
                 net.EventError += OnNameError;
-                new Thread(() =>
-                {
-                    try
-                    {
-                        net.Communicate();
-                    }
-                    catch (Exception ex)
-                    {
-                        ChatTB.AppendText("Не удалось получить данные. Завершение соединения..." + Environment.NewLine);
-                    }
-                }).Start();
+                ThreadStart th = new ThreadStart(Communicate);
+                t1 = new Thread(th);
+                t1.Start();
+
             }
             catch (Exception ex)
             {
-               ChatTB.AppendText("Что-то пошло не так... :(" + Environment.NewLine);
+                t1.Abort();
+                OnComment("Что-то пошло не так... :(");
+            }
+        }
+        void Communicate()
+        {
+            try
+            {
+                net.Communicate();
+            }
+            catch (Exception ex)
+            {
+
+                OnComment("Не удалось получить данные. Завершение соединения...");
+                //OnNameError(0);
             }
         }
         private void OnComment(String value)
@@ -91,7 +104,7 @@ namespace Client
                 Invoke(new NetMessaging.Receiving(OnMessage), value);
             }
         }
-    
+
 
         private void OnStart(string command, string data)
         {
@@ -129,28 +142,31 @@ namespace Client
 
         private void GoMessaging()
         {
-            new Thread(() =>
+            ThreadStart th = new ThreadStart(Message);
+            t2 = new Thread(th);
+            t2.Start();
+        }
+        void Message()
+        {
+            while (true)
             {
-                while (true)
+                String userData = "";
+                userData = send;
+                if (send != "")
                 {
-                    String userData = "";
-                    userData = send;
-                    if (send!="")
-                    {
-                        send = "";
-                        net.SendData("MESSAGE", userData);
-                    }
+                    send = "";
+                    net.SendData("MESSAGE", userData);
                 }
             }
-            ).Start();
         }
 
         void OnLogin(string c, string d)
         {
             if (!userNameTB.InvokeRequired)
             {
-                var t = true;
-                new Thread(name).Start();
+                ThreadStart th = new ThreadStart(name);
+                t3 = new Thread(name);
+                t3.Start();
             }
             else
             {
@@ -163,6 +179,7 @@ namespace Client
             var t = true;
             while (t)
             {
+
                 String userName = "";
                 userName = userNameTB.Text;
                 if (!Entry.Enabled)
@@ -170,7 +187,7 @@ namespace Client
                     t = false;
                     net.SendData("LOGIN", userName);
                 }
-                
+
             }
         }
 
@@ -178,9 +195,8 @@ namespace Client
         {
             Entry.Enabled = false;
             userNameTB.Enabled = false;
-            
         }
-        String send ="";
+        String send = "";
         private void Send_Click(object sender, EventArgs e)
         {
             send = MessageTB.Text;
@@ -195,11 +211,44 @@ namespace Client
         }
         private void OnNameError(int val)
         {
-            Entry.Enabled = true;
-            userNameTB.Enabled = true;
-            ChatTB.AppendText("Выберите другое имя" + Environment.NewLine);
+            if (!userNameTB.InvokeRequired && !Entry.InvokeRequired)
+            {
+                Entry.Enabled = true;
+                userNameTB.Enabled = true;
+                ChatTB.AppendText("Выберите другое имя" + Environment.NewLine);
+
+                ThreadStart th = new ThreadStart(name);
+                t4 = new Thread(th);
+                t4.Start();
+
+            }
+            else Invoke(new NetMessaging.Error(OnNameError), 0);
+
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (t1 != null)
+            {
+                
+                t1.Abort();
+            }
+            if (t2 != null)
+            {
+               
+                t2.Abort();
+            }
+            if (t3 != null)
+            {
+
+                t3.Abort();
+
+            }
+            if (t4 != null)
+            {
+
+                t4.Abort();
+            }
         }
     }
-
 }
-

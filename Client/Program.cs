@@ -19,17 +19,8 @@ namespace Client
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Form1());
             
-    }
-        public class User
-        {
-            String X { get; set; }
-
-            public User(String x)
-            {
-                X = x;
-            }
-            public String GetName() { return X; }
         }
+        
 
     }
 }

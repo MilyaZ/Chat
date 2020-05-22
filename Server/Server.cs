@@ -50,6 +50,13 @@ namespace Server
 
             private void OnLogin(string command, string data)
             {
+                var notpovtor = true;
+                foreach(var cl in clients)
+                {
+                    if (data == cl.Name) notpovtor = false;
+                }
+                if (notpovtor)
+                {
                     Name = data;
                     string list = "";
                     clients.ForEach(client =>
@@ -57,20 +64,20 @@ namespace Server
                         list += client.Name + ",";
                     });
                     net.SendData("USERLIST", list);
-                clients.Add(this);
+                    clients.Add(this);
 
                     net.SendData("START", "!");
-               
-                
+                }else net.SendData("LOGIN1", "?");
+
             }
-            
+
         }
         private String host;
         private Socket sSocket;
-        private const int port = 8034; 
+        private const int port = 8034;
         public Server()
         {
-            
+
             Console.WriteLine("Получение локального адреса сервера");
             try
             {
@@ -110,4 +117,3 @@ namespace Server
         }
     }
 }
-

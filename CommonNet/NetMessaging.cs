@@ -36,7 +36,7 @@ namespace CommonNet
         public NetMessaging(Socket s)
         {
             cSocket = s;
-           if(users!=null) users = new List<User>();
+            if (users != null) users = new List<User>();
         }
         public void SendData(String command, String data)
         {
@@ -48,39 +48,10 @@ namespace CommonNet
                     var b = Encoding.UTF8.GetBytes(command + "=" + data + "\n");
                     Console.WriteLine("Отправка сообщения...");
                     EventComment?.Invoke("Отправка сообщения...");
-                    bool ecqually = true;
-                    if (command == "LOGIN" && data!="?")
-                    {
-                        foreach (var b1 in ConnectedClient.clients)
-                        {
-                            
-
-                            if (b1.GetName() == data)
-                            {
-                                ecqually = false;
-                                EventError?.Invoke(0);
-
-                            }
-                        }
-                        if (ecqually)
-                        {
-                            User s = new User(data);
-                            users.Add(s);
-                        }
-                    }
-                    if (ecqually)
-                    {
-                        
-                        cSocket.Send(b);
-                        Console.WriteLine("Сообщение успешно отправлено!");
-                        EventComment?.Invoke("Сообщение успешно отправлено!");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Не удалось отправить сообщение :(");
-                        EventComment?.Invoke("Не удалось отправить сообщение :(");
-                    }
-
+                    cSocket.Send(b);
+                    Console.WriteLine("Сообщение успешно отправлено!");
+                    EventComment?.Invoke("Сообщение успешно отправлено!");
+              
                 }
                 catch (Exception ex)
                 {
@@ -141,6 +112,11 @@ namespace CommonNet
                         LoginCmdReceived?.Invoke(cd[0], cd[1]);
                         break;
                     }
+                case "LOGIN1":
+                    {
+                        EventError?.Invoke(0);
+                        break;
+                    }
                 case "MESSAGE":
                     {
                         MessageCmdReceived?.Invoke(cd[0], cd[1]);
@@ -160,5 +136,3 @@ namespace CommonNet
         }
     }
 }
-
-
