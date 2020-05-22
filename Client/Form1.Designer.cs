@@ -95,6 +95,7 @@
             this.MessageTB.Size = new System.Drawing.Size(260, 19);
             this.MessageTB.TabIndex = 5;
             this.MessageTB.TabStop = false;
+            this.MessageTB.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MessageTB_KeyDown);
             // 
             // Address
             // 
@@ -177,7 +178,6 @@
             this.privateCiB.TabIndex = 13;
             this.privateCiB.Text = "Личное";
             this.privateCiB.UseVisualStyleBackColor = true;
-            this.privateCiB.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // Form1
             // 

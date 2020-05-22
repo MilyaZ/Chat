@@ -267,9 +267,17 @@ namespace Client
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        private void MessageTB_KeyDown(object sender, KeyEventArgs e)
         {
-           
+            if (e.KeyData == Keys.Enter)
+            {
+                if (!privateCiB.Checked)
+                {
+                    send = MessageTB.Text;
+                    MessageTB.Text = "";
+                }
+                else PrivateMessage();
+            }
         }
     }
 }
