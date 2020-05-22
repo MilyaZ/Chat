@@ -74,6 +74,7 @@
             // 
             // userNameTB
             // 
+            this.userNameTB.Enabled = false;
             this.userNameTB.Location = new System.Drawing.Point(92, 32);
             this.userNameTB.Margin = new System.Windows.Forms.Padding(2);
             this.userNameTB.Multiline = true;
@@ -114,6 +115,7 @@
             // 
             // Entry
             // 
+            this.Entry.Enabled = false;
             this.Entry.Location = new System.Drawing.Point(360, 32);
             this.Entry.Margin = new System.Windows.Forms.Padding(2);
             this.Entry.Name = "Entry";

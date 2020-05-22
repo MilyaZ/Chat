@@ -43,6 +43,8 @@ namespace Client
             var sHost = "DESKTOP-NGK2IUN";
             String usHost;
             usHost = AddressTB.Text;
+            userNameTB.Enabled = true;
+            Entry.Enabled = true;
             if (usHost.Length > 0) sHost = usHost;
             try
             {
