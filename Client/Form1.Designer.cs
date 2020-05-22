@@ -38,6 +38,9 @@
             this.Entry = new System.Windows.Forms.Button();
             this.Send = new System.Windows.Forms.Button();
             this.message = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ForTB = new System.Windows.Forms.TextBox();
+            this.privateCiB = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // AddressTB
@@ -53,7 +56,7 @@
             // ChatTB
             // 
             this.ChatTB.Enabled = false;
-            this.ChatTB.Location = new System.Drawing.Point(11, 71);
+            this.ChatTB.Location = new System.Drawing.Point(11, 105);
             this.ChatTB.Margin = new System.Windows.Forms.Padding(2);
             this.ChatTB.Multiline = true;
             this.ChatTB.Name = "ChatTB";
@@ -85,7 +88,7 @@
             // 
             // MessageTB
             // 
-            this.MessageTB.Location = new System.Drawing.Point(99, 317);
+            this.MessageTB.Location = new System.Drawing.Point(92, 341);
             this.MessageTB.Margin = new System.Windows.Forms.Padding(2);
             this.MessageTB.Multiline = true;
             this.MessageTB.Name = "MessageTB";
@@ -106,7 +109,7 @@
             // yourName
             // 
             this.yourName.AutoSize = true;
-            this.yourName.Location = new System.Drawing.Point(28, 32);
+            this.yourName.Location = new System.Drawing.Point(28, 35);
             this.yourName.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.yourName.Name = "yourName";
             this.yourName.Size = new System.Drawing.Size(60, 13);
@@ -127,7 +130,7 @@
             // 
             // Send
             // 
-            this.Send.Location = new System.Drawing.Point(363, 317);
+            this.Send.Location = new System.Drawing.Point(360, 339);
             this.Send.Margin = new System.Windows.Forms.Padding(2);
             this.Send.Name = "Send";
             this.Send.Size = new System.Drawing.Size(58, 23);
@@ -139,17 +142,51 @@
             // message
             // 
             this.message.AutoSize = true;
-            this.message.Location = new System.Drawing.Point(28, 320);
+            this.message.Location = new System.Drawing.Point(19, 344);
             this.message.Name = "message";
             this.message.Size = new System.Drawing.Size(68, 13);
             this.message.TabIndex = 10;
             this.message.Text = "Сообщение:";
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(51, 67);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(36, 13);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Кому:";
+            // 
+            // ForTB
+            // 
+            this.ForTB.Location = new System.Drawing.Point(92, 64);
+            this.ForTB.Margin = new System.Windows.Forms.Padding(2);
+            this.ForTB.Multiline = true;
+            this.ForTB.Name = "ForTB";
+            this.ForTB.Size = new System.Drawing.Size(260, 19);
+            this.ForTB.TabIndex = 12;
+            this.ForTB.TabStop = false;
+            // 
+            // privateCiB
+            // 
+            this.privateCiB.AutoSize = true;
+            this.privateCiB.Location = new System.Drawing.Point(358, 67);
+            this.privateCiB.Name = "privateCiB";
+            this.privateCiB.Size = new System.Drawing.Size(63, 17);
+            this.privateCiB.TabIndex = 13;
+            this.privateCiB.Text = "Личное";
+            this.privateCiB.UseVisualStyleBackColor = true;
+            this.privateCiB.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(429, 344);
+            this.ClientSize = new System.Drawing.Size(429, 369);
+            this.Controls.Add(this.privateCiB);
+            this.Controls.Add(this.ForTB);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.message);
             this.Controls.Add(this.Send);
             this.Controls.Add(this.Entry);
@@ -181,6 +218,9 @@
         private System.Windows.Forms.Button Entry;
         private System.Windows.Forms.Button Send;
         private System.Windows.Forms.Label message;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox ForTB;
+        private System.Windows.Forms.CheckBox privateCiB;
     }
 }
 

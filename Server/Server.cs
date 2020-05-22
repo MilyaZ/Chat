@@ -25,6 +25,7 @@ namespace Server
                 net.SendData("LOGIN", "?");
                 net.LoginCmdReceived += OnLogin;
                 net.MessageCmdReceived += OnMessage;
+                net.PrivateMessage += OnPrivateMessage;
                 new Thread(() =>
                 {
                     try
@@ -46,6 +47,24 @@ namespace Server
                     if (client != this)
                         client.net.SendData("MESSAGE", Name + ": " + data);
                 });
+            }
+            private void OnPrivateMessage(string command, string data)
+            {
+                char[] sep = { '@' };
+                var cd = data.Split(sep, 2);
+                var error = false;
+                clients.ForEach((client) =>
+                {
+                    if (client.Name == cd[0])
+                    {
+                        client.net.SendData("MESSAGE", Name + ": " + cd[1] + " (priv)");
+                        error = true;
+                    }
+                });
+                if (!error)
+                {
+                    net.SendData("ERROR", "?");
+                }
             }
 
             private void OnLogin(string command, string data)

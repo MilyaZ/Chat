@@ -61,6 +61,7 @@ namespace Client
                 net.MessageCmdReceived += OnMessage;
                 net.EventComment += OnComment;
                 net.EventError += OnNameError;
+                //
                 ThreadStart th = new ThreadStart(Communicate);
                 t1 = new Thread(th);
                 t1.Start();
@@ -68,7 +69,7 @@ namespace Client
             }
             catch (Exception ex)
             {
-                t1.Abort();
+               
                 OnComment("Что-то пошло не так... :(");
             }
         }
@@ -201,9 +202,22 @@ namespace Client
         String send = "";
         private void Send_Click(object sender, EventArgs e)
         {
-            send = MessageTB.Text;
-            MessageTB.Text = "";
+            if (!privateCiB.Checked)
+            {
+                send = MessageTB.Text;
+                MessageTB.Text = "";
+            }
+            else PrivateMessage();
         }
+        void PrivateMessage()
+        {
+            String userData = "";
+            userData =ForTB.Text+"@"+MessageTB.Text;
+            net.SendData("MESSAGE1", userData);
+        }
+            
+        
+
 
         private void ChatTB_TextChanged(object sender, EventArgs e)
         {
@@ -251,6 +265,11 @@ namespace Client
 
                 t4.Abort();
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+           
         }
     }
 }

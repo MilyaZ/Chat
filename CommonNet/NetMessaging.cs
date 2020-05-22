@@ -30,6 +30,7 @@ namespace CommonNet
         public event Receiving MessageCmdReceived;
         public event Receiving UserListCmdReceived;
         public event Receiving StartCmdReceived;
+        public event Receiving PrivateMessage;
         public event Error EventError;
         public event Comment EventComment;
 
@@ -122,6 +123,11 @@ namespace CommonNet
                         MessageCmdReceived?.Invoke(cd[0], cd[1]);
                         break;
                     }
+                case "MESSAGE1":
+                    {
+                        PrivateMessage?.Invoke(cd[0], cd[1]);
+                        break;
+                    }
                 case "USERLIST":
                     {
                         UserListCmdReceived?.Invoke(cd[0], cd[1]);
@@ -130,6 +136,11 @@ namespace CommonNet
                 case "START":
                     {
                         StartCmdReceived?.Invoke(cd[0], cd[1]);
+                        break;
+                    }
+                case "ERROR":
+                    {
+                        EventComment?.Invoke("Нет пользователя");
                         break;
                     }
             }
