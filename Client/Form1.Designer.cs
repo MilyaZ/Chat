@@ -66,10 +66,10 @@
             // 
             // Choice
             // 
-            this.Choice.Location = new System.Drawing.Point(360, 3);
+            this.Choice.Location = new System.Drawing.Point(360, 7);
             this.Choice.Margin = new System.Windows.Forms.Padding(2);
             this.Choice.Name = "Choice";
-            this.Choice.Size = new System.Drawing.Size(58, 23);
+            this.Choice.Size = new System.Drawing.Size(58, 19);
             this.Choice.TabIndex = 3;
             this.Choice.Text = "Choice";
             this.Choice.UseVisualStyleBackColor = true;
@@ -88,7 +88,7 @@
             // 
             // MessageTB
             // 
-            this.MessageTB.Location = new System.Drawing.Point(92, 341);
+            this.MessageTB.Location = new System.Drawing.Point(92, 354);
             this.MessageTB.Margin = new System.Windows.Forms.Padding(2);
             this.MessageTB.Multiline = true;
             this.MessageTB.Name = "MessageTB";
@@ -123,7 +123,7 @@
             this.Entry.Location = new System.Drawing.Point(360, 32);
             this.Entry.Margin = new System.Windows.Forms.Padding(2);
             this.Entry.Name = "Entry";
-            this.Entry.Size = new System.Drawing.Size(58, 23);
+            this.Entry.Size = new System.Drawing.Size(58, 19);
             this.Entry.TabIndex = 8;
             this.Entry.Text = "Entry";
             this.Entry.UseVisualStyleBackColor = true;
@@ -132,10 +132,10 @@
             // Send
             // 
             this.Send.Enabled = false;
-            this.Send.Location = new System.Drawing.Point(360, 339);
+            this.Send.Location = new System.Drawing.Point(360, 354);
             this.Send.Margin = new System.Windows.Forms.Padding(2);
             this.Send.Name = "Send";
-            this.Send.Size = new System.Drawing.Size(58, 23);
+            this.Send.Size = new System.Drawing.Size(58, 19);
             this.Send.TabIndex = 9;
             this.Send.Text = "Send";
             this.Send.UseVisualStyleBackColor = true;
@@ -144,7 +144,7 @@
             // message
             // 
             this.message.AutoSize = true;
-            this.message.Location = new System.Drawing.Point(19, 344);
+            this.message.Location = new System.Drawing.Point(20, 357);
             this.message.Name = "message";
             this.message.Size = new System.Drawing.Size(68, 13);
             this.message.TabIndex = 10;
@@ -184,7 +184,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(429, 369);
+            this.ClientSize = new System.Drawing.Size(429, 384);
             this.Controls.Add(this.privateCiB);
             this.Controls.Add(this.ForTB);
             this.Controls.Add(this.label1);

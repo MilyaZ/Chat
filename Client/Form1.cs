@@ -40,7 +40,7 @@ namespace Client
 
         private void Choice_Click(object sender, EventArgs e)
         {
-            var sHost = "DESKTOP-NGK2IUN";
+            var sHost = "SMAKBOOK";
             String usHost;
             usHost = AddressTB.Text;
             userNameTB.Enabled = true;

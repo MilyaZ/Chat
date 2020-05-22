@@ -76,7 +76,7 @@ namespace CommonNet
                     var cnt = cSocket.Receive(b);
 
                     Console.WriteLine("Получена порция данных №{0}", ++i);
-                    EventComment?.Invoke("Получена порция данных № " + (++i).ToString());
+                    EventComment?.Invoke("Получена новая порция данных");
                     var r = Encoding.UTF8.GetString(b, 0, cnt);
                     res += r;
                 } while (res[res.Length - 1] != '\n');
