@@ -84,6 +84,11 @@ namespace Server
                     });
                     net.SendData("USERLIST", list);
                     clients.Add(this);
+                    clients.ForEach((client) =>
+                    {
+                        if (client != this)
+                            client.net.SendData("MESSAGE", Name + " в сити");
+                    });
 
                     net.SendData("START", "!");
                 }else net.SendData("LOGIN1", "?");
